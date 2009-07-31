@@ -1,11 +1,6 @@
-
-using System;
-
 namespace CalcLib
 {
-	
-	
-	public interface StackItem
-	{
-	}
+    public interface IStackItem
+    {
+    }
 }

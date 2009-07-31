@@ -1,15 +1,14 @@
-
-using System;
-
 namespace CalcLib
 {
-	
-	
-	public class Plus : Operator
-	{
-		public Operand Evaluate(Operand item1, Operand item2)
-		{
-			return item1 + item2;
-		}
-	}
+    public class Plus : IOperator
+    {
+        #region IOperator Members
+
+        public Operand Evaluate(Operand item1, Operand item2)
+        {
+            return item1 + item2;
+        }
+
+        #endregion
+    }
 }
