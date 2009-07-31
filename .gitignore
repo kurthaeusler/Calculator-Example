@@ -1,0 +1,4 @@
+*.dll
+*.dll.mdb
+*/test-results/*
+
