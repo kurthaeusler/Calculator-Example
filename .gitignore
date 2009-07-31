@@ -1,4 +1,7 @@
 *.dll
 *.dll.mdb
 */test-results/*
+*.pidb
+*.userprefs
+*.usertasks
 
