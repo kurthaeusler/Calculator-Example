@@ -19,43 +19,58 @@ namespace CalcLib
 
         public void Number(int number)
         {
-            _stack.Push(new Operand(number));
+            Operand newOperand;
+            if (_stack.Count > 0 && _stack.Peek() is IUnaryOperator)
+                newOperand = ((IUnaryOperator) _stack.Pop()).Evaluate(new Operand(number));
+            else if (_stack.Count > 0 && _stack.Peek() is Operand)
+                newOperand = ((Operand) _stack.Peek()).AppendDigit(number);
+            else
+                newOperand = new Operand(number);
+            _stack.Push(newOperand);
+            UpdateValue();
         }
 
         public void Plus()
         {
             _stack.Push(new Plus());
-            if (_stack.Count > 3)
-                UpdateValue();
+            UpdateValue();
         }
 
         public void Minus()
         {
-            _stack.Push(new Minus());
-            if (_stack.Count > 3)
-                UpdateValue();
+            if (_stack.Count == 0 || _stack.Peek() is IOperator)
+                _stack.Push(new Negate());
+            else
+                _stack.Push(new Minus());
+            UpdateValue();
         }
 
         public void Equals()
         {
             Evaluate();
-            _value = ((Operand) _stack.Peek()).Value;
         }
 
         private void UpdateValue()
         {
+            if (_stack.Count < 4)
+            {
+                if (_stack.Peek() is Operand)
+                    _value = ((Operand) _stack.Peek()).Value;
+                return;
+            }
             var lastOp = (IOperator) _stack.Pop();
-            Equals();
+            Evaluate();
             _stack.Push(lastOp);
         }
 
         private void Evaluate()
         {
             var item2 = (Operand) _stack.Pop();
-            var op = (IOperator) _stack.Pop();
+            var op = (IBinaryOperator) _stack.Pop();
             var item1 = (Operand) _stack.Pop();
             Operand val = op.Evaluate(item1, item2);
             _stack.Push(val);
+            _value = val.Value;
         }
     }
 }

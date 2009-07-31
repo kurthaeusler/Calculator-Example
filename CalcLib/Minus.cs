@@ -1,8 +1,8 @@
 namespace CalcLib
 {
-    public class Minus : IOperator
+    public class Minus : IBinaryOperator
     {
-        #region IOperator Members
+        #region IBinaryOperator Members
 
         public Operand Evaluate(Operand item1, Operand item2)
         {
