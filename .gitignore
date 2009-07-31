@@ -1,7 +1,13 @@
-*.dll
 *.dll.mdb
 */test-results/*
 *.pidb
 *.userprefs
 *.usertasks
-
+*/bin/*
+*/obj/*
+*.user
+*.suo
+UpgradeLog.XML
+_ReSharper.Calculator/*
+_UpgradeReport_Files/*
+Backup/*
