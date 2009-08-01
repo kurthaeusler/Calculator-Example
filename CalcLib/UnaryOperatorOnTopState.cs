@@ -1,8 +1,10 @@
-﻿namespace CalcLib
+﻿using System;
+
+namespace CalcLib
 {
     public class UnaryOperatorOnTopState : State
     {
-        private readonly int _value;
+        private int _value;
 
         public UnaryOperatorOnTopState(State state)
         {
@@ -38,6 +40,19 @@
         public override State Equals()
         {
             return this;
+        }
+
+        public override State ClearEntry()
+        {
+            Stack.Pop(); // throw away
+            _value = 0;
+            if (Stack.Count == 0)
+                return new EmptyState();
+            if (Stack.Peek() is IBinaryOperator)
+                return new BinaryOperatorOnTopState(this);
+            if (Stack.Peek() is Operand)
+                return new OperandOnTopState(this);
+            throw new Exception("Stack in strange state");
         }
     }
 }

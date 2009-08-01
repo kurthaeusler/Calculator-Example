@@ -16,5 +16,6 @@ namespace CalcLib
         public abstract State Minus();
 
         public abstract State Equals();
+        public abstract State ClearEntry();
     }
 }

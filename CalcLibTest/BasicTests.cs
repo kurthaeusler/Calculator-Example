@@ -48,6 +48,32 @@ namespace CalcLibTest
         }
 
         [Test]
+        public void CanDeleteCurrentEntry()
+        {
+            var engine = new Engine();
+            engine.Number(1);
+            Assert.AreEqual(1, engine.Value);
+            engine.ClearEntry();
+            Assert.AreEqual(0, engine.Value);
+        }
+
+        [Test]
+        public void CanDeleteCurrentEntryWhenOperatorIsOnStack()
+        {
+            var engine = new Engine();
+            engine.Number(1);
+            Assert.AreEqual(1, engine.Value);
+            engine.Plus();
+            Assert.AreEqual(1, engine.Value);
+            engine.ClearEntry();
+            Assert.AreEqual(0, engine.Value);
+            engine.Number(2);
+            Assert.AreEqual(2, engine.Value);
+            engine.Equals();
+            Assert.AreEqual(3, engine.Value);
+        }
+
+        [Test]
         public void CanEnterMultiDigitNumbers()
         {
             var engine = new Engine();

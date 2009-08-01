@@ -33,5 +33,10 @@ namespace CalcLib
         {
             _state = _state.Equals();
         }
+
+        public void ClearEntry()
+        {
+            _state = _state.ClearEntry();
+        }
     }
 }

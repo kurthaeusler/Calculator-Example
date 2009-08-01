@@ -36,5 +36,10 @@ namespace CalcLib
         {
             return this;
         }
+
+        public override State ClearEntry()
+        {
+            return this;
+        }
     }
 }

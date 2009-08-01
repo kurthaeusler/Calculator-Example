@@ -2,7 +2,7 @@
 {
     public class BinaryOperatorOnTopState : State
     {
-        private readonly int _value;
+        private int _value;
 
         public BinaryOperatorOnTopState(State state)
         {
@@ -35,6 +35,13 @@
 
         public override State Equals()
         {
+            return this;
+        }
+
+        public override State ClearEntry()
+        {
+            // Dont change the stack, just set the value to 0.
+            _value = 0;
             return this;
         }
     }
