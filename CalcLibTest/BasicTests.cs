@@ -66,9 +66,9 @@ namespace CalcLibTest
             engine.Number(5);
             Assert.AreEqual(-45, engine.Value);
             engine.Number(6);
+            Assert.AreEqual(-456, engine.Value);
+            engine.Equals();
             Assert.AreEqual(-579, engine.Value);
-
-
         }
 
         [Test]

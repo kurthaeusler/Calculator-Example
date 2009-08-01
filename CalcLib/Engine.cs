@@ -23,7 +23,7 @@ namespace CalcLib
             if (_stack.Count > 0 && _stack.Peek() is IUnaryOperator)
                 newOperand = ((IUnaryOperator) _stack.Pop()).Evaluate(new Operand(number));
             else if (_stack.Count > 0 && _stack.Peek() is Operand)
-                newOperand = ((Operand) _stack.Peek()).AppendDigit(number);
+                newOperand = ((Operand) _stack.Pop()).AppendDigit(number);
             else
                 newOperand = new Operand(number);
             _stack.Push(newOperand);
