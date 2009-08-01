@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinaryOperatorOnTopState.cs" />
+    <Compile Include="EmptyState.cs" />
     <Compile Include="IBinaryOperator.cs" />
     <Compile Include="IUnaryOperator.cs" />
     <Compile Include="IStackItem.cs" />
@@ -51,8 +53,11 @@
     <Compile Include="Operand.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="IOperator.cs" />
+    <Compile Include="OperandOnTopState.cs" />
     <Compile Include="Plus.cs" />
     <Compile Include="Minus.cs" />
+    <Compile Include="State.cs" />
+    <Compile Include="UnaryOperatorOnTopState.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

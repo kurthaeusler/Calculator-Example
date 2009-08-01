@@ -11,8 +11,11 @@ namespace CalcLibTest
         {
             var engine = new Engine();
             engine.Number(1);
+            Assert.AreEqual(1, engine.Value);
             engine.Plus();
+            Assert.AreEqual(1, engine.Value);
             engine.Number(2);
+            Assert.AreEqual(2, engine.Value);
             engine.Equals();
             Assert.AreEqual(3, engine.Value);
         }
@@ -21,18 +24,25 @@ namespace CalcLibTest
         public void CanAddAndSubtract()
         {
             var engine = new Engine();
+            Assert.AreEqual(0, engine.Value);
             engine.Number(1);
+            Assert.AreEqual(1, engine.Value);
             engine.Plus();
+            Assert.AreEqual(1, engine.Value);
             engine.Number(2);
+            Assert.AreEqual(2, engine.Value);
             engine.Plus();
             Assert.AreEqual(3, engine.Value);
             engine.Number(3);
+            Assert.AreEqual(3, engine.Value);
             engine.Minus();
             Assert.AreEqual(6, engine.Value);
             engine.Number(4);
+            Assert.AreEqual(4, engine.Value);
             engine.Minus();
             Assert.AreEqual(2, engine.Value);
             engine.Number(5);
+            Assert.AreEqual(5, engine.Value);
             engine.Equals();
             Assert.AreEqual(-3, engine.Value);
         }
@@ -42,6 +52,7 @@ namespace CalcLibTest
         {
             var engine = new Engine();
             engine.Number(1);
+            Assert.AreEqual(1, engine.Value);
             engine.Number(2);
             Assert.AreEqual(12, engine.Value);
         }
@@ -51,6 +62,7 @@ namespace CalcLibTest
         {
             var engine = new Engine();
             engine.Minus();
+            Assert.AreEqual(0, engine.Value);
             engine.Number(1);
             Assert.AreEqual(-1, engine.Value);
             engine.Number(2);
