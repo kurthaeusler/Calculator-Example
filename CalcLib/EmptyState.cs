@@ -2,44 +2,56 @@
 
 namespace CalcLib
 {
-    public class EmptyState : State
+  public class EmptyState : State
+  {
+    public EmptyState()
     {
-        public EmptyState()
-        {
-            Stack = new Stack<IStackItem>();
-        }
-
-        public override int Value
-        {
-            get { return 0; }
-        }
-
-        public override State Number(int number)
-        {
-            Stack.Push(new Operand(number));
-            return new OperandOnTopState(this);
-        }
-
-        public override State Minus()
-        {
-            Stack.Push(new Negate());
-            return new UnaryOperatorOnTopState(this);
-        }
-
-        public override State Plus()
-        {
-            Stack.Push(new Plus());
-            return new BinaryOperatorOnTopState(this);
-        }
-
-        public override State Equals()
-        {
-            return this;
-        }
-
-        public override State ClearEntry()
-        {
-            return this;
-        }
+      Stack = new Stack<IStackItem>();
     }
+
+    public override decimal Value
+    {
+      get { return 0; }
+    }
+
+    public override State Digit(int digit)
+    {
+      Stack.Push(new Operand(digit));
+      return new OperandOnTopState(this);
+    }
+
+    public override State Minus()
+    {
+      Stack.Push(new Negate());
+      return new UnaryOperatorOnTopState(this);
+    }
+
+    public override State Plus()
+    {
+      Stack.Push(new Plus());
+      return new BinaryOperatorOnTopState(this);
+    }
+
+    public override State Equals()
+    {
+      return this;
+    }
+
+    public override State ClearEntry()
+    {
+      return this;
+    }
+
+    public override State Times()
+    {
+      Stack.Push(new Multiplication());
+      return new BinaryOperatorOnTopState(this);
+    }
+
+    public override State Divide()
+    {
+      Stack.Push(new Division());
+      return new BinaryOperatorOnTopState(this);
+    }
+  }
 }

@@ -1,6 +1,6 @@
 namespace CalcLib
 {
-    public interface IStackItem
-    {
-    }
+  public interface IStackItem
+  {
+  }
 }

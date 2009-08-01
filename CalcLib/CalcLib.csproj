@@ -44,11 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinaryOperatorOnTopState.cs" />
+    <Compile Include="Division.cs" />
     <Compile Include="EmptyState.cs" />
     <Compile Include="IBinaryOperator.cs" />
     <Compile Include="IUnaryOperator.cs" />
     <Compile Include="IStackItem.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Multiplication.cs" />
     <Compile Include="Negate.cs" />
     <Compile Include="Operand.cs" />
     <Compile Include="Engine.cs" />

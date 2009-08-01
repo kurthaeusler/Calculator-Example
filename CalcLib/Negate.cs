@@ -1,14 +1,14 @@
 ﻿namespace CalcLib
 {
-    public class Negate : IUnaryOperator
+  public class Negate : IUnaryOperator
+  {
+    #region IUnaryOperator Members
+
+    public Operand Evaluate(Operand item)
     {
-        #region IUnaryOperator Members
-
-        public Operand Evaluate(Operand item)
-        {
-            return new Operand(item.Value*-1);
-        }
-
-        #endregion
+      return new Operand(item.Value*-1);
     }
+
+    #endregion
+  }
 }

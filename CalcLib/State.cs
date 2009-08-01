@@ -2,20 +2,22 @@
 
 namespace CalcLib
 {
-    public abstract class State
-    {
-        public abstract int Value { get; }
+  public abstract class State
+  {
+    public abstract decimal Value { get; }
 
-        public Stack<IStackItem> Stack // Should be protected somehow.
-        { get; protected set; }
+    public Stack<IStackItem> Stack // Should be protected somehow.
+    { get; protected set; }
 
-        public abstract State Number(int number);
+    public abstract State Digit(int digit);
 
-        public abstract State Plus();
+    public abstract State Plus();
 
-        public abstract State Minus();
+    public abstract State Minus();
 
-        public abstract State Equals();
-        public abstract State ClearEntry();
-    }
+    public abstract State Equals();
+    public abstract State ClearEntry();
+    public abstract State Times();
+    public abstract State Divide();
+  }
 }

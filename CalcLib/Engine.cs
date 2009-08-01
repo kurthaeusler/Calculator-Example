@@ -1,42 +1,57 @@
 namespace CalcLib
 {
-    public class Engine
+  public class Engine
+  {
+    private State _state;
+
+    public Engine()
     {
-        private State _state;
-
-        public Engine()
-        {
-            _state = new EmptyState();
-        }
-
-        public int Value
-        {
-            get { return _state.Value; }
-        }
-
-        public void Number(int number)
-        {
-            _state = _state.Number(number);
-        }
-
-        public void Plus()
-        {
-            _state = _state.Plus();
-        }
-
-        public void Minus()
-        {
-            _state = _state.Minus();
-        }
-
-        public void Equals()
-        {
-            _state = _state.Equals();
-        }
-
-        public void ClearEntry()
-        {
-            _state = _state.ClearEntry();
-        }
+      _state = new EmptyState();
     }
+
+    public decimal Value
+    {
+      get { return _state.Value; }
+    }
+
+    public void Digit(int digit)
+    {
+      _state = _state.Digit(digit);
+    }
+
+    public void Plus()
+    {
+      _state = _state.Plus();
+    }
+
+    public void Minus()
+    {
+      _state = _state.Minus();
+    }
+
+    public void Equals()
+    {
+      _state = _state.Equals();
+    }
+
+    public void ClearEntry()
+    {
+      _state = _state.ClearEntry();
+    }
+
+    public void ClearAll()
+    {
+      _state = new EmptyState();
+    }
+
+    public void Times()
+    {
+      _state = _state.Times();
+    }
+
+    public void Divide()
+    {
+      _state = _state.Divide();
+    }
+  }
 }

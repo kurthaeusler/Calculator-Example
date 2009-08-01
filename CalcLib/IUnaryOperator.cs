@@ -1,7 +1,7 @@
 ﻿namespace CalcLib
 {
-    public interface IUnaryOperator : IOperator
-    {
-        Operand Evaluate(Operand item);
-    }
+  public interface IUnaryOperator : IOperator
+  {
+    Operand Evaluate(Operand item);
+  }
 }
