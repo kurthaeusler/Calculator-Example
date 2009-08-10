@@ -109,6 +109,32 @@ namespace CalcLibTest
     }
 
     [Test]
+    public void CanEnterDecimalPoints()
+    {
+      var engine = new Engine();
+      engine.Digit(1);
+      Assert.AreEqual(1, engine.Value);
+      engine.Point();
+      Assert.AreEqual(1, engine.Value);
+      engine.Digit(2);
+      Assert.AreEqual(1.2, engine.Value);
+      engine.Digit(3);
+      Assert.AreEqual(1.23, engine.Value);
+      engine.Plus();
+      Assert.AreEqual(1.23, engine.Value);
+      engine.Digit(4);
+      Assert.AreEqual(4, engine.Value);
+      engine.Point();
+      Assert.AreEqual(4, engine.Value);
+      engine.Digit(5);
+      Assert.AreEqual(4.5, engine.Value);
+      engine.Digit(6);
+      Assert.AreEqual(4.56, engine.Value);
+      engine.Equals();
+      Assert.AreEqual(5.79, engine.Value);
+    }
+
+    [Test]
     public void CanEnterMultiDigitNumbers()
     {
       var engine = new Engine();

@@ -4,10 +4,10 @@ namespace CalcLib
 {
   public abstract class State
   {
-    public abstract decimal Value { get; }
-
     public Stack<IStackItem> Stack // Should be protected somehow.
     { get; protected set; }
+
+    public decimal Value { get; protected set; } // Should probably be renamed display value and become a string.
 
     public abstract State Digit(int digit);
 
@@ -19,5 +19,6 @@ namespace CalcLib
     public abstract State ClearEntry();
     public abstract State Times();
     public abstract State Divide();
+    public abstract State Point();
   }
 }

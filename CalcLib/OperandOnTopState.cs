@@ -4,23 +4,16 @@ namespace CalcLib
 {
   public class OperandOnTopState : State
   {
-    private decimal _value;
-
     public OperandOnTopState(State state)
     {
       Stack = state.Stack;
-      _value = ((Operand) Stack.Peek()).Value;
-    }
-
-    public override decimal Value
-    {
-      get { return _value; }
+      Value = ((Operand) Stack.Peek()).Value;
     }
 
     public override State Digit(int digit)
     {
       Operand newOperand = ((Operand) Stack.Pop()).AppendDigit(digit);
-      _value = newOperand.Value;
+      Value = newOperand.Value;
       Stack.Push(newOperand);
       return this;
     }
@@ -45,7 +38,7 @@ namespace CalcLib
       var item1 = (Operand) Stack.Pop();
       Operand val = op.Evaluate(item1, item2);
       Stack.Push(val);
-      _value = val.Value;
+      Value = val.Value;
     }
 
     public override State Plus()
@@ -68,7 +61,7 @@ namespace CalcLib
     public override State ClearEntry()
     {
       Stack.Pop(); // Throw it away
-      _value = 0;
+      Value = 0;
       if (Stack.Count == 0)
         return new EmptyState();
       if (Stack.Peek() is IBinaryOperator)
@@ -88,6 +81,12 @@ namespace CalcLib
     public override State Divide()
     {
       Stack.Push(new Division());
+      return new BinaryOperatorOnTopState(this);
+    }
+
+    public override State Point()
+    {
+      Stack.Push(new DecimalPoint());
       return new BinaryOperatorOnTopState(this);
     }
   }

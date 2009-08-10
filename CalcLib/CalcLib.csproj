@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinaryOperatorOnTopState.cs" />
+    <Compile Include="DecimalPoint.cs" />
+    <Compile Include="DecimalPointOnTopState.cs" />
     <Compile Include="Division.cs" />
     <Compile Include="EmptyState.cs" />
     <Compile Include="IBinaryOperator.cs" />

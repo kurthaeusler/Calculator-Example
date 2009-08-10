@@ -2,17 +2,10 @@
 {
   public class BinaryOperatorOnTopState : State
   {
-    private decimal _value;
-
     public BinaryOperatorOnTopState(State state)
     {
-      _value = state.Value;
+      Value = state.Value;
       Stack = state.Stack;
-    }
-
-    public override decimal Value
-    {
-      get { return _value; }
     }
 
     public override State Digit(int digit)
@@ -41,7 +34,7 @@
     public override State ClearEntry()
     {
       // Dont change the stack, just set the value to 0.
-      _value = 0;
+      Value = 0;
       return this;
     }
 
@@ -57,6 +50,12 @@
       Stack.Pop(); // Throw away
       Stack.Push(new Division());
       return this;
+    }
+
+    public override State Point()
+    {
+      Stack.Push(new DecimalPoint());
+      return new DecimalPointOnTopState(this);
     }
   }
 }

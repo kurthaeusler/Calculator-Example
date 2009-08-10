@@ -7,11 +7,7 @@ namespace CalcLib
     public EmptyState()
     {
       Stack = new Stack<IStackItem>();
-    }
-
-    public override decimal Value
-    {
-      get { return 0; }
+      Value = 0;
     }
 
     public override State Digit(int digit)
@@ -52,6 +48,12 @@ namespace CalcLib
     {
       Stack.Push(new Division());
       return new BinaryOperatorOnTopState(this);
+    }
+
+    public override State Point()
+    {
+      Stack.Push(new DecimalPoint());
+      return new DecimalPointOnTopState(this);
     }
   }
 }

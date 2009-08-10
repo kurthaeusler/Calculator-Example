@@ -53,5 +53,10 @@ namespace CalcLib
     {
       _state = _state.Divide();
     }
+
+    public void Point()
+    {
+      _state = _state.Point();
+    }
   }
 }

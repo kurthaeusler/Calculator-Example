@@ -4,17 +4,11 @@ namespace CalcLib
 {
   public class UnaryOperatorOnTopState : State
   {
-    private decimal _value;
 
     public UnaryOperatorOnTopState(State state)
     {
-      _value = state.Value;
+      Value = state.Value;
       Stack = state.Stack;
-    }
-
-    public override decimal Value
-    {
-      get { return _value; }
     }
 
     public override State Digit(int digit)
@@ -46,7 +40,7 @@ namespace CalcLib
     public override State ClearEntry()
     {
       Stack.Pop(); // throw away
-      _value = 0;
+      Value = 0;
       if (Stack.Count == 0)
         return new EmptyState();
       if (Stack.Peek() is IBinaryOperator)
@@ -67,6 +61,12 @@ namespace CalcLib
     {
       Stack.Pop(); // Throw away
       Stack.Push(new Division());
+      return new BinaryOperatorOnTopState(this);
+    }
+
+    public override State Point()
+    {
+      Stack.Push(new DecimalPoint());
       return new BinaryOperatorOnTopState(this);
     }
   }
