@@ -230,5 +230,35 @@ namespace CalcLibTest
       engine.Equals();
       Assert.AreEqual(-1, engine.Value);
     }
+
+    [Test]
+    public void PrecedenceTest1()
+    {
+      var engine = new Engine();
+      engine.Digit(1);
+      engine.Plus();
+      engine.Digit(2);
+      engine.Times();
+      engine.Digit(3);
+      engine.Plus();
+      engine.Digit(4);
+      engine.Equals();
+      Assert.AreEqual(13, engine.Value);
+    }
+
+    [Test]
+    public void PrecedenceTest2()
+    {
+      var engine = new Engine();
+      engine.Digit(1);
+      engine.Times();
+      engine.Digit(2);
+      engine.Plus();
+      engine.Digit(3);
+      engine.Times();
+      engine.Digit(4);
+      engine.Equals();
+      Assert.AreEqual(20, engine.Value);
+    }
   }
 }

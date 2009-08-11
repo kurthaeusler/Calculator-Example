@@ -65,12 +65,20 @@
 
     public override State Times()
     {
+      if (Stack.Count > 2)
+      {
+        Evaluate();
+      }
       Stack.Push(new Multiplication());
       return new BinaryOperatorOnTopState(this);
     }
 
     public override State Divide()
     {
+      if (Stack.Count > 2)
+      {
+        Evaluate();
+      }
       Stack.Push(new Division());
       return new BinaryOperatorOnTopState(this);
     }
