@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace CalcLib
+﻿namespace CalcLib
 {
   public class UnaryOperatorOnTopState : State
   {
-
     public UnaryOperatorOnTopState(State state)
     {
       Value = state.Value;
@@ -41,13 +38,7 @@ namespace CalcLib
     {
       Stack.Pop(); // throw away
       Value = 0;
-      if (Stack.Count == 0)
-        return new EmptyState();
-      if (Stack.Peek() is IBinaryOperator)
-        return new BinaryOperatorOnTopState(this);
-      if (Stack.Peek() is Operand)
-        return new OperandOnTopState(this);
-      throw new Exception("Stack in strange state");
+      return DetermineCurrentState(this);
     }
 
     public override State Times()
@@ -67,7 +58,7 @@ namespace CalcLib
     public override State Point()
     {
       Stack.Push(new DecimalPoint());
-      return new BinaryOperatorOnTopState(this);
+      return new DecimalPointOnTopState(this);
     }
   }
 }

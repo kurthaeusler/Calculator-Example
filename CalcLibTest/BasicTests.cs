@@ -145,6 +145,23 @@ namespace CalcLibTest
     }
 
     [Test]
+    public void CanEnterNegativeDecimals()
+    {
+      var engine = new Engine();
+      engine.Minus();
+      engine.Point();
+      engine.Digit(1);
+      Assert.AreEqual(-0.1, engine.Value);
+      engine.Digit(2);
+      Assert.AreEqual(-0.12, engine.Value);
+      engine.Times();
+      Assert.AreEqual(-0.12, engine.Value);
+      engine.Digit(3);
+      engine.Equals();
+      Assert.AreEqual(-0.36, engine.Value);
+    }
+
+    [Test]
     public void CanEnterNegativeMultiDigitNumbers()
     {
       var engine = new Engine();

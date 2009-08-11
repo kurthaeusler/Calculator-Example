@@ -4,8 +4,8 @@ namespace CalcLib
 {
   public class Operand : IStackItem
   {
+    private readonly int _currentDecimalPlace;
     private readonly decimal _value;
-    private int _currentDecimalPlace;
 
     public Operand(decimal val)
     {
@@ -13,24 +13,24 @@ namespace CalcLib
       _currentDecimalPlace = 0;
     }
 
+    private Operand(decimal val, int currentDecimalPlace)
+    {
+      _value = val;
+      _currentDecimalPlace = currentDecimalPlace;
+    }
+
     public decimal Value
     {
       get { return _value; }
     }
 
-    public bool IsDigit
-    {
-      get
-      {
-        return Value > -1 &&
-               Value < 10 &&
-               Value == Math.Truncate(Value);
-      }
-    }
-
     public Operand AppendDigit(int digit)
     {
-      return new Operand(_value > -1 ? _value*10 + digit : _value*10 - digit);
+      return _currentDecimalPlace > 0
+               ? AppendDecimalIncrement(digit)
+               : new Operand(_value > -1
+                               ? _value*10 + digit
+                               : _value*10 - digit);
     }
 
     public static Operand operator +(Operand item1, Operand item2)
@@ -55,8 +55,10 @@ namespace CalcLib
 
     public Operand AppendDecimalIncrement(int digit)
     {
-      _currentDecimalPlace++;
-      return new Operand(_value + (decimal) (digit*Math.Pow(10, _currentDecimalPlace*-1)));
+      if (_value < 0)
+        digit = digit*-1;
+      return new Operand(_value + (decimal) (digit*Math.Pow(10, (_currentDecimalPlace + 1)*-1)),
+                         _currentDecimalPlace + 1);
     }
   }
 }

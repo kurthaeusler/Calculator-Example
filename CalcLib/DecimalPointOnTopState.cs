@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CalcLib
+﻿namespace CalcLib
 {
   public class DecimalPointOnTopState : State
   {
@@ -12,37 +10,56 @@ namespace CalcLib
 
     public override State Digit(int digit)
     {
-      throw new NotImplementedException();
+      Stack.Pop();
+      if (Stack.Peek() is Negate)
+      {
+        Stack.Pop();
+        digit = digit*-1;
+      }
+      Stack.Push((Stack.Count < 1 || !(Stack.Peek() is Operand)
+                    ? new Operand(0)
+                    : (Operand) Stack.Pop()).AppendDecimalIncrement(digit));
+      return new OperandOnTopState(this);
     }
 
     public override State Plus()
     {
-      throw new NotImplementedException();
+      Stack.Pop();
+      Stack.Push(new Plus());
+      return new BinaryOperatorOnTopState(this);
     }
 
     public override State Minus()
     {
-      throw new NotImplementedException();
+      Stack.Pop();
+      Stack.Push(new Minus());
+      return new BinaryOperatorOnTopState(this);
     }
 
     public override State Equals()
     {
-      throw new NotImplementedException();
+      Stack.Pop();
+      return DetermineCurrentState(this).Equals();
     }
 
     public override State ClearEntry()
     {
-      throw new NotImplementedException();
+      Stack.Pop();
+      return DetermineCurrentState(this).ClearEntry();
     }
 
     public override State Times()
     {
-      throw new NotImplementedException();
+      Stack.Pop();
+      Stack.Push(new Multiplication());
+      return new BinaryOperatorOnTopState(this);
     }
 
     public override State Divide()
     {
-      throw new NotImplementedException();
+      Stack.Pop();
+      Stack.Push(new Division());
+      return new BinaryOperatorOnTopState(this);
     }
 
     public override State Point()
