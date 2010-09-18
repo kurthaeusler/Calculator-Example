@@ -5,10 +5,22 @@ namespace CalcLib
 {
   public abstract class State
   {
+    protected State()
+    {
+      BaseFormatter = new DecimalDisplayFormatter();
+    }
+
     public Stack<IStackItem> Stack // Should be protected somehow.
     { get; protected set; }
 
-    public decimal Value { get; protected set; } // Should probably be renamed display value and become a string.
+    public decimal Value { get; protected set; }
+
+    public string Display
+    {
+      get { return BaseFormatter.Display(Value); }
+    }
+
+    private IBaseFormatter BaseFormatter { get; set; }
 
     public abstract State Digit(int digit);
     public abstract State Plus();
@@ -30,6 +42,12 @@ namespace CalcLib
       if (Stack.Peek() is IBinaryOperator)
         return new BinaryOperatorOnTopState(oldState);
       throw new Exception("Stack in strange state");
+    }
+
+    public State Binary()
+    {
+      BaseFormatter = new BinaryBaseFormatter();
+      return this;
     }
   }
 }

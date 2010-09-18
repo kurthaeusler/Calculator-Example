@@ -14,6 +14,11 @@ namespace CalcLib
       get { return _state.Value; }
     }
 
+    public string Display
+    {
+      get { return _state.Display; }
+    }
+
     public void Digit(int digit)
     {
       _state = _state.Digit(digit);
@@ -57,6 +62,11 @@ namespace CalcLib
     public void Point()
     {
       _state = _state.Point();
+    }
+
+    public void Binary()
+    {
+      _state = _state.Binary();
     }
   }
 }
