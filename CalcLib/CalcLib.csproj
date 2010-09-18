@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BinaryBaseFormatter.cs" />
+    <Compile Include="BinaryDisplayFormatter.cs" />
     <Compile Include="BinaryOperatorOnTopState.cs" />
     <Compile Include="DecimalDisplayFormatter.cs" />
     <Compile Include="DecimalPoint.cs" />

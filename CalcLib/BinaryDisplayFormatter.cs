@@ -2,7 +2,7 @@
 
 namespace CalcLib
 {
-  public class BinaryBaseFormatter : IBaseFormatter
+  public class BinaryDisplayFormatter : IBaseFormatter
   {
     public string Display(decimal value)
     {

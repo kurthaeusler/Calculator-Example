@@ -46,7 +46,7 @@ namespace CalcLib
 
     public State Binary()
     {
-      BaseFormatter = new BinaryBaseFormatter();
+      BaseFormatter = new BinaryDisplayFormatter();
       return this;
     }
   }
